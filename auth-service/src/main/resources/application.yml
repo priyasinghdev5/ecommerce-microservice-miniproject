@@ -1,0 +1,70 @@
+server:
+  port: 9000
+
+spring:
+  application:
+    name: auth-service
+
+  # PostgreSQL
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:5432/auth_db?options=-c%20TimeZone%3DUTC
+    username: ${DB_USER:ecom}
+    password: ${DB_PASS:ecom_pass}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: validate   # Flyway manages schema — JPA only validates
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+
+  # Flyway migrations
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+
+  # Redis
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: 6379
+
+# JWT config
+jwt:
+  secret: ${JWT_SECRET:mySecretKey_ChangeThis_InProduction_MustBe256BitsLong!!}
+  access-token-expiry: 900      # 15 minutes in seconds
+  refresh-token-expiry: 604800  # 7 days in seconds
+  issuer: ecom-auth
+
+# Eureka
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+
+# Actuator + observability
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+  endpoint:
+    health:
+      show-details: always
+  tracing:
+    sampling:
+      probability: 1.0
+  zipkin:
+    tracing:
+      endpoint: http://localhost:9411/api/v2/spans
+
+logging:
+  level:
+    com.ecom.auth: DEBUG
+    org.springframework.security: INFO

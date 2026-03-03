@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Order Confirmed</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f4f4f4; margin: 0; padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; background: white; border-radius: 8px; overflow: hidden; }
+        .header { background: #2563eb; color: white; padding: 30px; text-align: center; }
+        .body { padding: 30px; color: #333; }
+        .amount { font-size: 2rem; font-weight: bold; color: #2563eb; }
+        .footer { background: #f9f9f9; padding: 20px; text-align: center; color: #888; font-size: 12px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>✅ Order Confirmed!</h1>
+    </div>
+    <div class="body">
+        <p>Your order has been confirmed and payment processed successfully.</p>
+        <p><strong>Order ID:</strong> <span th:text="${orderId}">ORDER-ID</span></p>
+        <p class="amount"><span th:text="${currency}">INR</span> <span th:text="${amount}">0.00</span></p>
+        <p><strong>Transaction Ref:</strong> <span th:text="${gatewayRef}">TXN-REF</span></p>
+        <p>We will notify you once your order is shipped.</p>
+    </div>
+    <div class="footer">
+        <p>eCommerce Platform &copy; 2024 | You received this because you placed an order.</p>
+    </div>
+</div>
+</body>
+</html>

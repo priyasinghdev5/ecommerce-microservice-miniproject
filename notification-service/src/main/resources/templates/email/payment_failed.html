@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Payment Failed</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f4f4f4; margin: 0; padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; background: white; border-radius: 8px; overflow: hidden; }
+        .header { background: #dc2626; color: white; padding: 30px; text-align: center; }
+        .body { padding: 30px; color: #333; }
+        .btn { display: inline-block; background: #2563eb; color: white; padding: 12px 24px; border-radius: 6px; text-decoration: none; }
+        .footer { background: #f9f9f9; padding: 20px; text-align: center; color: #888; font-size: 12px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>❌ Payment Failed</h1>
+    </div>
+    <div class="body">
+        <p>Unfortunately, your payment could not be processed.</p>
+        <p><strong>Order ID:</strong> <span th:text="${orderId}">ORDER-ID</span></p>
+        <p><strong>Amount:</strong> <span th:text="${amount}">0.00</span></p>
+        <p><strong>Reason:</strong> <span th:text="${reason}">Unknown</span></p>
+        <p>Please try again with a different payment method.</p>
+        <br/>
+        <a href="http://localhost:3000/orders" class="btn">Retry Payment</a>
+    </div>
+    <div class="footer">
+        <p>eCommerce Platform &copy; 2024</p>
+    </div>
+</div>
+</body>
+</html>

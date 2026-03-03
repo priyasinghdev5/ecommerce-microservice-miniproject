@@ -1,0 +1,63 @@
+server:
+  port: 8089
+
+spring:
+  application:
+    name: batch-service
+
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:5432/batch_db?options=-c%20TimeZone%3DUTC
+    username: ${DB_USER:ecom}
+    password: ${DB_PASS:ecom_pass}
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  # Spring Batch uses its own schema — let it auto-create
+  batch:
+    jdbc:
+      initialize-schema: always
+    job:
+      enabled: false    # Don't auto-run jobs on startup
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+
+  kafka:
+    bootstrap-servers: ${KAFKA_HOST:localhost}:9092
+
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+  tracing:
+    sampling:
+      probability: 1.0
+  zipkin:
+    tracing:
+      endpoint: http://localhost:9411/api/v2/spans
+
+logging:
+  level:
+    com.ecom.batch: DEBUG
+    org.springframework.batch: INFO

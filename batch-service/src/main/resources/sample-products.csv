@@ -1,0 +1,8 @@
+sku,name,description,brand,categories,price,compare_at_price,active
+SHOE-RED-42,Red Running Shoe,Lightweight running shoe for everyday training,SpeedX,"footwear,sports",1999.99,2499.99,true
+TSHIRT-BLUE-L,Blue Cotton T-Shirt,Comfortable everyday cotton t-shirt,ComfortWear,"clothing,casual",499.99,699.99,true
+LAPTOP-PRO-16,Pro Laptop 16 inch,High performance laptop for professionals,TechBrand,"electronics,laptops",89999.99,99999.99,true
+HEADPHONE-BT,Wireless Bluetooth Headphones,Noise cancelling over-ear headphones,SoundMax,"electronics,audio",4999.99,6999.99,true
+WATCH-SMART-01,Smart Watch Series 1,Fitness and health tracking smartwatch,WristTech,"wearables,fitness",12999.99,15999.99,true
+INVALID-ROW,,Missing name - should be skipped,Brand,category,-100.00,,true
+BOOK-JAVA-01,Effective Java 3rd Edition,Best practices for Java development,Addison-Wesley,"books,programming",2499.99,,true
